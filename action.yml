@@ -1,0 +1,10 @@
+name: Debricked Vulnerability Scan
+author: Debricked
+description: Integrates with Debricked to automatically scan your dependencies for vulnerabilities
+runs:
+  using: docker
+  image: docker://debricked/debricked-scan
+  entrypoint: /github-action.sh
+branding:
+  color: purple
+  icon: search
