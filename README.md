@@ -4,13 +4,13 @@ This repository contains the source code for our Github Actions.
 
 Remember that we also provide a Github integration as a [Github App](https://github.com/apps/debricked/), which can easily add dependency scans to your repositories without configuring actions.
 
-You can always find documentation for our different ways of integrating with Debricked at https://debricked.com/documentation/.
+You can always find documentation for our different ways of integrating with Debricked at our [Debricked documentation](https://debricked.com/docs/integrations/ci-build-systems/github.html#github-actions).
 
 ## Usage
 
 You can use the action `debricked/actions/scan@v1` to scan your repository.
-The action needs two environmental variables: `USERNAME` and `PASSWORD`, to be set to your Debricked credentials.
-You should store them in a secret variable, so they don't leak through the logs! See the example below.
+The action needs one environmental variable: `DEBRICKED_TOKEN`, to be set to your Debricked API token.
+You should store it in a secret variable, so they don't leak through the logs! See the example below.
 
 This is an example workflow file:
 
@@ -27,11 +27,10 @@ jobs:
     - uses: actions/checkout@v2
     - uses: debricked/actions/scan@v1
       env:
-        USERNAME: ${{ secrets.DEBRICKED_USERNAME }}
-        PASSWORD: ${{ secrets.DEBRICKED_PASSWORD }}
+        DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
 
-Remember to add your username and password as secrets under Settings - Secrets in your repository.
+Remember to add your debricked token as a secret under `Settings - Secrets` in your repository.
 
 ### Skip scan feature
 
@@ -54,8 +53,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: debricked/actions/skip-scan@v1
       env:
-        USERNAME: ${{ secrets.DEBRICKED_USERNAME }}
-        PASSWORD: ${{ secrets.DEBRICKED_PASSWORD }}
+        DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
 
 ### If you use languages that need a copy of the whole repository
@@ -77,8 +75,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: debricked/actions/scan@v1
       env:
-        USERNAME: ${{ secrets.DEBRICKED_USERNAME }}
-        PASSWORD: ${{ secrets.DEBRICKED_PASSWORD }}
+        DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
         UPLOAD_ALL_FILES: "true"
 ```
 
