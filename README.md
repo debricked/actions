@@ -10,7 +10,7 @@ You can always find documentation for our different ways of integrating with Deb
 
 You can use the action `debricked/actions/scan@v1` to scan your repository.
 The action needs one environmental variable: `DEBRICKED_TOKEN`, to be set to your Debricked API token.
-You should store it in a secret variable, so they don't leak through the logs! See the example below.
+You should store it in a secret variable, so it doesn't leak through the logs! See the example below.
 
 This is an example workflow file:
 
