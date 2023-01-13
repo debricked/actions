@@ -17,7 +17,7 @@ This is an example workflow file:
 ```yaml
 name: Vulnerability scan
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   vulnerabilities-scan:
@@ -43,7 +43,7 @@ Example workflow with skip scan:
 ```yaml
 name: Vulnerability scan
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   vulnerabilities-scan:
@@ -65,7 +65,7 @@ You then need to add the variable `UPLOAD_ALL_FILES: "true"` to the action, as b
 ```yaml
 name: Vulnerability scan
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   vulnerabilities-scan:
