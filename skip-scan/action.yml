@@ -1,6 +1,6 @@
 name: Debricked Vulnerability Scan
 author: Debricked
-description: Integrates with Debricked to automatically scan your dependencies for vulnerabilities
+description: Integrates with Debricked to automatically scan your dependencies for vulnerabilities and license risks
 runs:
   using: docker
   image: docker://debricked/debricked-scan
