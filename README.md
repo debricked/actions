@@ -8,7 +8,7 @@ You can always find documentation for our different ways of integrating with Deb
 
 ## Usage
 
-You can use the action `debricked/actions/scan@v1` to scan your repository.
+You can use the action `debricked/actions/scan@v2.0.0` to scan your repository.
 The action needs one environmental variable: `DEBRICKED_TOKEN`, to be set to your Debricked API token.
 You should store it in a secret variable, so it doesn't leak through the logs! See the example below.
 
@@ -25,7 +25,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: debricked/actions/scan@v1
+    - uses: debricked/actions/scan@v2.0.0
       env:
         DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
@@ -51,7 +51,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: debricked/actions/skip-scan@v1
+    - uses: debricked/actions/skip-scan@v2.0.0
       env:
         DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
@@ -73,7 +73,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: debricked/actions/scan@v1
+    - uses: debricked/actions/scan@v2.0.0
       env:
         DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
         UPLOAD_ALL_FILES: "true"
