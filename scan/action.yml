@@ -3,8 +3,11 @@ author: Debricked
 description: Integrates with Debricked to automatically scan your dependencies for vulnerabilities and license risks
 runs:
   using: docker
-  image: docker://debricked/debricked-scan
-  entrypoint: /github-action.sh
+  image: docker://debricked/cli:1-resolution-debian
+  args:
+    - debricked
+    - scan
+    - .
 branding:
   color: purple
   icon: search
