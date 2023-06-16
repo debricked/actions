@@ -1,16 +1,18 @@
-# Github Actions for Debricked
+# GitHub Actions for Debricked
 
-This repository contains the source code for our Github Actions.
+This repository contains the source code for our GitHub Actions.
 
-Remember that we also provide a Github integration as a [Github App](https://github.com/apps/debricked/), which can easily add dependency scans to your repositories without configuring actions.
+Remember that we also provide a GitHub integration as a [GitHub App](https://github.com/apps/debricked/), which is used to create automatic [Pull Requests with root fixes](https://portal.debricked.com/vulnerability-management-43/debricked-s-pull-requests-201).
 
 You can always find documentation for our different ways of integrating with Debricked at our [Debricked documentation](https://debricked.com/docs/integrations/ci-build-systems/github.html#github-actions).
 
 ## Usage
 
-You can use the action `debricked/actions/scan@v2.0.0` to scan your repository.
+### Scan
+
+You can use the action `debricked/actions/scan@v3.0.0` to scan your repository.
 The action needs one environmental variable: `DEBRICKED_TOKEN`, to be set to your Debricked API token.
-You should store it in a secret variable, so it doesn't leak through the logs! See the example below.
+You should store it in a secret variable under `Settings - Secrets` in your repository, so it doesn't leak through the logs!
 
 This is an example workflow file:
 
@@ -24,59 +26,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: debricked/actions/scan@v2.0.0
-      env:
-        DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
+      - uses: actions/checkout@v3
+      - uses: debricked/actions/scan@v3.0.0
+        env:
+          DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
 
-Remember to add your debricked token as a secret under `Settings - Secrets` in your repository.
+When scanning, the High Performance resolution is enabled by default but can be disabled using the `--no-resolve` flag
 
-### Skip scan feature
+`scan` command also supports a number of different flags which will help you to adjust scan behavior to your needs. You can find out more about them on [Debricked Portal](https://portal.debricked.com/debricked-cli-63/debricked-cli-documentation-298?postid=472#scan)
 
-Sometimes you just wish to start a dependency scan in the background, without actually have it block the pipeline.
-To do this, use the `skip-scan` action. It will upload dependency files to Debricked, without waiting for the scan results.
-However, remember to visit Debricked regularly so you don't miss any new vulnerabilites in your code!
+### Resolve
 
-Example workflow with skip scan:
+This command analyses your project to find eligible manifest files, that do not have related lock files, and uses them to generate the appropriate Debricked lock files.
 
 ```yaml
-name: Vulnerability scan
+name: Debricked resolve
 
 on: [push]
 
 jobs:
-  vulnerabilities-scan:
+  resolve:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: debricked/actions/skip-scan@v2.0.0
-      env:
-        DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
+      - uses: actions/checkout@v3
+      - uses: debricked/actions/resolve@v3.0.0
+        env:
+          DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
 
-### If you use languages that need a copy of the whole repository
+You can read more about `resolve` command on [High Performance Scan: faster, more accurate, and more secure dependency scanning](https://portal.debricked.com/debricked-cli-63/high-performance-scan-faster-more-accurate-and-more-secure-dependency-scanning-293) page
 
-In most cases, such as above, the tool only needs to upload your dependency files to the service.
-However, for certain languages, you may need to upload a complete copy of the repository.
-You then need to add the variable `UPLOAD_ALL_FILES: "true"` to the action, as below:
-
-```yaml
-name: Vulnerability scan
-
-on: [push]
-
-jobs:
-  vulnerabilities-scan:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - uses: debricked/actions/scan@v2.0.0
-      env:
-        DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
-        UPLOAD_ALL_FILES: "true"
-```
-
-You can of course also combine this with skip scan action described above.
+And you can find out more about flags supported by `resolve` command on [Debricked Portal](https://portal.debricked.com/debricked-cli-63/debricked-cli-documentation-298?postid=472#resolve) 
