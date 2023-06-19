@@ -4,8 +4,12 @@ description: Integrates with Debricked to generate the appropriate Debricked loc
 runs:
   using: composite
   steps:
-    - uses: debricked/actions/cache@v3.0.1
-    - uses: debricked/actions/docker-resolve@v3.0.1
+    - name: Install Debricked CLI
+      run: curl -L https://github.com/debricked/cli/releases/latest/download/cli_linux_x86_64.tar.gz | tar -xz debricked
+      shell: bash
+    - name: Debricked Resolve
+      run: ./debricked resolve
+      shell: bash
 branding:
   color: purple
   icon: search

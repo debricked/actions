@@ -1,0 +1,23 @@
+name: Debricked Resolution Caching
+author: Debricked
+description: Uses cache action to save generated lock files in cache to improve performance
+runs:
+  using: composite
+  steps:
+    - name: Get current date
+      id: date
+      run: echo "date=$(date +'%Y-%m-%d')" >> "$GITHUB_ENV"
+      shell: bash
+    - uses: actions/cache@v3
+      with:
+        path: |
+          ~/Library/Caches/go-build
+          ~/go/pkg/mod
+          ~/.m2/repository
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+          ~/.cache/pip
+        key: ${{ runner.os }}-debricked-resolution-${{ env.date }}
+branding:
+  color: purple
+  icon: search

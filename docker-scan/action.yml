@@ -2,10 +2,12 @@ name: Debricked Vulnerability Scan
 author: Debricked
 description: Integrates with Debricked to automatically scan your dependencies for vulnerabilities and license risks
 runs:
-  using: composite
-  steps:
-    - uses: debricked/actions/cache@v3.0.1
-    - uses: debricked/actions/docker-scan@v3.0.1
+  using: docker
+  image: docker://debricked/cli:1-resolution-debian
+  args:
+    - debricked
+    - scan
+    - .
 branding:
   color: purple
   icon: search
