@@ -10,11 +10,11 @@ You can always find documentation for our different ways of integrating with Deb
 
 ### Scan
 
-You can use the action `debricked/actions/scan@v3.0.0` to scan your repository.
+You can use the action `debricked/actions/scan@v3.0.1` to scan your repository.
 The action needs one environmental variable: `DEBRICKED_TOKEN`, to be set to your Debricked API token.
 You should store it in a secret variable under `Settings - Secrets` in your repository, so it doesn't leak through the logs!
 
-This is an example workflow file which using Docker image:
+This is an example workflow file which uses our Docker image:
 
 ```yaml
 name: Vulnerability scan
@@ -30,10 +30,9 @@ jobs:
       - uses: debricked/actions/scan@v3.0.1
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
-      - uses: debricked/actions/cache@v3.0.1
 ```
 
-But it is also possible to run it standalone:
+But it is also possible to run it standalone, making it possible for you to customise the runtime environment:
 
 ```yaml
 name: Vulnerability scan
@@ -49,7 +48,6 @@ jobs:
       - uses: debricked/actions/scan-non-docker@v3.0.1
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
-      - uses: debricked/actions/cache@v3.0.1
 ```
 
 When scanning, the High Performance resolution is enabled by default but can be disabled using the `--no-resolve` flag
@@ -60,7 +58,7 @@ When scanning, the High Performance resolution is enabled by default but can be 
 
 This command analyses your project to find eligible manifest files, that do not have related lock files, and uses them to generate the appropriate Debricked lock files.
 
-Example workflow using Docker image:
+Example workflow using our Docker image:
 
 ```yaml
 name: Debricked resolve
@@ -76,7 +74,6 @@ jobs:
       - uses: debricked/actions/resolve@v3.0.1
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
-      - uses: debricked/actions/cache@v3.0.1
 ```
 
 Example workflow without Docker:
@@ -95,7 +92,6 @@ jobs:
       - uses: debricked/actions/resolve-non-docker@v3.0.1
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
-      - uses: debricked/actions/cache@v3.0.1
 ```
 
 You can read more about `resolve` command on [High Performance Scan: faster, more accurate, and more secure dependency scanning](https://portal.debricked.com/debricked-cli-63/high-performance-scan-faster-more-accurate-and-more-secure-dependency-scanning-293) page

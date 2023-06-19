@@ -2,10 +2,12 @@ name: Debricked Vulnerability Resolve
 author: Debricked
 description: Integrates with Debricked to generate the appropriate Debricked lock files from found eligible manifest files, that do not have related lock files
 runs:
-  using: composite
-  steps:
-    - uses: debricked/actions/cache@v3.0.1
-    - uses: debricked/actions/docker-resolve@v3.0.1
+  using: docker
+  image: docker://debricked/cli:1-resolution-debian
+  args:
+    - debricked
+    - resolve
+    - .
 branding:
   color: purple
   icon: search
