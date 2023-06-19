@@ -45,6 +45,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: debricked/actions/cache@v3.0.1
       - uses: debricked/actions/scan-non-docker@v3.0.1
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
@@ -89,6 +90,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: debricked/actions/cache@v3.0.1
       - uses: debricked/actions/resolve-non-docker@v3.0.1
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
