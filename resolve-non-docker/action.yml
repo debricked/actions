@@ -1,0 +1,15 @@
+name: Debricked Vulnerability Resolve
+author: Debricked
+description: Integrates with Debricked to generate the appropriate Debricked lock files from found eligible manifest files, that do not have related lock files
+runs:
+  using: composite
+  steps:
+    - name: Install Debricked CLI
+      run: curl -L https://github.com/debricked/cli/releases/latest/download/cli_linux_x86_64.tar.gz | tar -xz debricked
+      shell: bash
+    - name: Debricked Resolve
+      run: ./debricked resolve
+      shell: bash
+branding:
+  color: purple
+  icon: search

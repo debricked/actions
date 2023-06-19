@@ -14,7 +14,7 @@ You can use the action `debricked/actions/scan@v3.0.0` to scan your repository.
 The action needs one environmental variable: `DEBRICKED_TOKEN`, to be set to your Debricked API token.
 You should store it in a secret variable under `Settings - Secrets` in your repository, so it doesn't leak through the logs!
 
-This is an example workflow file:
+This is an example workflow file which using Docker image:
 
 ```yaml
 name: Vulnerability scan
@@ -27,19 +27,29 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ~/Library/Caches/go-build
-            ~/go/pkg/mod
-            ~/.m2/repository
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            ~/.cache/pip
-          key: ${{ runner.os }}-debricked-resolution--${{ steps.get-date.outputs.date }}
-      - uses: debricked/actions/scan@v3.0.0
+      - uses: debricked/actions/scan@v3.0.1
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
+      - uses: debricked/actions/cache@v3.0.1
+```
+
+But it is also possible to run it standalone:
+
+```yaml
+name: Vulnerability scan
+
+on: [push]
+
+jobs:
+  vulnerabilities-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: debricked/actions/scan-non-docker@v3.0.1
+        env:
+          DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
+      - uses: debricked/actions/cache@v3.0.1
 ```
 
 When scanning, the High Performance resolution is enabled by default but can be disabled using the `--no-resolve` flag
@@ -49,6 +59,8 @@ When scanning, the High Performance resolution is enabled by default but can be 
 ### Resolve
 
 This command analyses your project to find eligible manifest files, that do not have related lock files, and uses them to generate the appropriate Debricked lock files.
+
+Example workflow using Docker image:
 
 ```yaml
 name: Debricked resolve
@@ -61,19 +73,29 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ~/Library/Caches/go-build
-            ~/go/pkg/mod
-            ~/.m2/repository
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            ~/.cache/pip
-          key: ${{ runner.os }}-debricked-resolution--${{ steps.get-date.outputs.date }}
-      - uses: debricked/actions/resolve@v3.0.0
+      - uses: debricked/actions/resolve@v3.0.1
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
+      - uses: debricked/actions/cache@v3.0.1
+```
+
+Example workflow without Docker:
+
+```yaml
+name: Debricked resolve
+
+on: [push]
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: debricked/actions/resolve-non-docker@v3.0.1
+        env:
+          DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
+      - uses: debricked/actions/cache@v3.0.1
 ```
 
 You can read more about `resolve` command on [High Performance Scan: faster, more accurate, and more secure dependency scanning](https://portal.debricked.com/debricked-cli-63/high-performance-scan-faster-more-accurate-and-more-secure-dependency-scanning-293) page

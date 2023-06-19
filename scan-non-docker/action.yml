@@ -1,0 +1,15 @@
+name: Debricked Vulnerability Scan
+author: Debricked
+description: Integrates with Debricked to automatically scan your dependencies for vulnerabilities and license risks
+runs:
+  using: composite
+  steps:
+    - name: Install Debricked CLI
+      run: curl -L https://github.com/debricked/cli/releases/latest/download/cli_linux_x86_64.tar.gz | tar -xz debricked
+      shell: bash
+    - name: Debricked Scan
+      run: ./debricked scan
+      shell: bash
+branding:
+  color: purple
+  icon: search
