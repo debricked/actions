@@ -27,6 +27,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/Library/Caches/go-build
+            ~/go/pkg/mod
+            ~/.m2/repository
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.cache/pip
+          key: ${{ runner.os }}-debricked-resolution--${{ steps.get-date.outputs.date }}
       - uses: debricked/actions/scan@v3.0.0
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
@@ -51,6 +61,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/Library/Caches/go-build
+            ~/go/pkg/mod
+            ~/.m2/repository
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.cache/pip
+          key: ${{ runner.os }}-debricked-resolution--${{ steps.get-date.outputs.date }}
       - uses: debricked/actions/resolve@v3.0.0
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
