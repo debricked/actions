@@ -10,7 +10,7 @@ You can always find documentation for our different ways of integrating with Deb
 
 ### Scan
 
-You can use the action `debricked/actions/scan@v3.0.1` to scan your repository.
+You can use the action `debricked/actions@v3.0.2` to scan your repository.
 The action needs one environmental variable: `DEBRICKED_TOKEN`, to be set to your Debricked API token.
 You should store it in a secret variable under `Settings - Secrets` in your repository, so it doesn't leak through the logs!
 
@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: debricked/actions/scan@v3.0.1
+      - uses: debricked/actions@v3.0.2
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
@@ -45,8 +45,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: debricked/actions/cache@v3.0.1
-      - uses: debricked/actions/scan-non-docker@v3.0.1
+      - uses: debricked/actions/cache@v3.0.2
+      - uses: debricked/actions/scan-non-docker@v3.0.2
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
@@ -72,7 +72,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: debricked/actions/resolve@v3.0.1
+      - uses: debricked/actions/resolve@v3.0.2
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
@@ -90,8 +90,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: debricked/actions/cache@v3.0.1
-      - uses: debricked/actions/resolve-non-docker@v3.0.1
+      - uses: debricked/actions/cache@v3.0.2
+      - uses: debricked/actions/resolve-non-docker@v3.0.2
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
