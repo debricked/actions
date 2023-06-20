@@ -4,8 +4,7 @@ description: Uses cache action to save generated lock files in cache to improve 
 runs:
   using: composite
   steps:
-    - name: Get current date
-      id: date
+    - id: date
       run: echo "date=$(date +'%Y-%m-%d')" >> "$GITHUB_ENV"
       shell: bash
     - uses: actions/cache@v3
