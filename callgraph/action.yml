@@ -1,0 +1,11 @@
+name: Debricked Callgraph Generation
+author: Debricked
+description: Generates a callgraph to be used to figure out if vulnerable symbols are actually being called in the code
+runs:
+  using: composite
+  steps:
+    - uses: debricked/actions/cache@v3
+    - uses: debricked/actions/docker-callgraph@v3
+branding:
+  color: purple
+  icon: search
