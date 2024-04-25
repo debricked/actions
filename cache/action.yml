@@ -7,7 +7,7 @@ runs:
     - id: date
       run: echo "date=$(date +'%Y-%m-%d')" >> "$GITHUB_ENV"
       shell: bash
-    - uses: actions/cache@v3
+    - uses: actions/cache@v4
       with:
         path: |
           ~/Library/Caches/go-build
