@@ -5,8 +5,7 @@ runs:
   using: composite
   steps:
     - name: Install Debricked CLI
-      run: curl -L https://github.com/debricked/cli/releases/latest/download/cli_linux_x86_64.tar.gz | tar -xz debricked
-      shell: bash
+      uses: debricked/actions/non-docker@v3
     - name: Debricked Scan
       run: ./debricked scan
       shell: bash
