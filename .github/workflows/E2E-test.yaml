@@ -1,0 +1,33 @@
+name: E2E test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
+
+jobs:
+  E2E-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: E2E test main action file
+        uses: ./
+      - name: E2E test scan non-docker action file
+        uses: ./scan-non-docker
+      - name: E2E test fingerprint action file
+        uses: ./fingerprint
+      - name: E2E test fingerprint non-docker action file
+        uses: ./fingerprint-non-docker
+      - name: E2E test callgraph action file
+        uses: ./callgraph
+      - name: E2E test callgraph non-docker action file
+        uses: ./callgraph-non-docker
+      - name: E2E test resolve action file
+        uses: ./resolve
+      - name: E2E test resolve non-docker action file
+        uses: ./resolve-non-docker
