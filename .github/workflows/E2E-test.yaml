@@ -22,6 +22,8 @@ jobs:
         uses: ./scan-non-docker
       - name: E2E test fingerprint action file
         uses: ./fingerprint
+      - name: Remove debricked.fingerprints.txt from previous step
+        uses: rm debricked.fingerprints.txt
       - name: E2E test fingerprint non-docker action file
         uses: ./fingerprint-non-docker
       - name: E2E test callgraph action file
