@@ -1,0 +1,11 @@
+name: Debricked Fingerprint
+author: Debricked
+description: Generates a debricked.fingerprints.txt containing fingerprints of files to be used to detect Open Source dependencies not included in manifest files.
+runs:
+  using: composite
+  steps:
+    - uses: debricked/actions/cache@v3
+    - uses: debricked/actions/docker-fingerprint@v3
+branding:
+  color: purple
+  icon: search
