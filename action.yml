@@ -4,8 +4,8 @@ description: Integrates with Debricked to automatically scan your dependencies f
 runs:
   using: composite
   steps:
-    - uses: debricked/actions/cache@v3
-    - uses: debricked/actions/docker-scan@v3
+    - uses: debricked/actions/cache@v4
+    - uses: debricked/actions/docker-scan@v4
 branding:
   color: purple
   icon: search

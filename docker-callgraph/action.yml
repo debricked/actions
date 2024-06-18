@@ -3,7 +3,7 @@ author: Debricked
 description: Generates a callgraph to be used to figure out if vulnerable symbols are actually being called in the code
 runs:
   using: docker
-  image: docker://debricked/cli:1-resolution-debian
+  image: docker://debricked/cli:2-resolution-debian
   args:
     - debricked
     - callgraph

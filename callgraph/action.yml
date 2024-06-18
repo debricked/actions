@@ -4,8 +4,8 @@ description: Generates a callgraph to be used to figure out if vulnerable symbol
 runs:
   using: composite
   steps:
-    - uses: debricked/actions/cache@v3
-    - uses: debricked/actions/docker-callgraph@v3
+    - uses: debricked/actions/cache@v4
+    - uses: debricked/actions/docker-callgraph@v4
 branding:
   color: purple
   icon: search

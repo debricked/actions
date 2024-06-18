@@ -4,8 +4,8 @@ description: Integrates with Debricked to generate the appropriate Debricked loc
 runs:
   using: composite
   steps:
-    - uses: debricked/actions/cache@v3
-    - uses: debricked/actions/docker-resolve@v3
+    - uses: debricked/actions/cache@v4
+    - uses: debricked/actions/docker-resolve@v4
 branding:
   color: purple
   icon: search

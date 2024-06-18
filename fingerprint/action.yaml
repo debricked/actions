@@ -4,8 +4,8 @@ description: Generates a debricked.fingerprints.txt containing fingerprints of f
 runs:
   using: composite
   steps:
-    - uses: debricked/actions/cache@v3
-    - uses: debricked/actions/docker-fingerprint@v3
+    - uses: debricked/actions/cache@v4
+    - uses: debricked/actions/docker-fingerprint@v4
 branding:
   color: purple
   icon: search

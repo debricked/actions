@@ -11,8 +11,8 @@ runs:
         if [ "${RUNNER_ARCH}" == "X86" ]; then RUNNER_ARCH=i386; fi
         BIN_NAME=debricked
         if [ "${RUNNER_OS}" == "Windows" ]; then BIN_NAME=debricked.exe; fi
-        echo "https://github.com/debricked/cli/releases/download/release-v1/cli_${RUNNER_OS}_${RUNNER_ARCH}.tar.gz"
-        curl -L "https://github.com/debricked/cli/releases/download/release-v1/cli_${RUNNER_OS}_${RUNNER_ARCH}.tar.gz" | tar -xz "${BIN_NAME}"
+        echo "https://github.com/debricked/cli/releases/download/release-v2/cli_${RUNNER_OS}_${RUNNER_ARCH}.tar.gz"
+        curl -L "https://github.com/debricked/cli/releases/download/release-v2/cli_${RUNNER_OS}_${RUNNER_ARCH}.tar.gz" | tar -xz "${BIN_NAME}"
       shell: bash
 branding:
   color: purple

@@ -3,7 +3,7 @@ author: Debricked
 description: Integrates with Debricked to generate the appropriate Debricked lock files from found eligible manifest files, that do not have related lock files
 runs:
   using: docker
-  image: docker://debricked/cli:1-resolution-debian
+  image: docker://debricked/cli:2-resolution-debian
   args:
     - debricked
     - resolve

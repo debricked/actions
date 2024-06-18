@@ -5,7 +5,7 @@ runs:
   using: composite
   steps:
     - name: Install Debricked CLI
-      uses: debricked/actions/non-docker@v3
+      uses: debricked/actions/non-docker@v4
     - name: Debricked Scan
       run: ./debricked scan
       shell: bash
