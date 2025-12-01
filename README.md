@@ -10,7 +10,7 @@ You can always find documentation for our different ways of integrating with Deb
 
 ### Scan
 
-You can use the action `debricked/actions@v3` to scan your repository.
+You can use the action `debricked/actions@v4` to scan your repository.
 The action needs one environmental variable: `DEBRICKED_TOKEN`, to be set to your Debricked API token.
 You should store it in a secret variable under `Settings - Secrets` in your repository, so it doesn't leak through the logs!
 
@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: debricked/actions@v3
+      - uses: actions/checkout@v4
+      - uses: debricked/actions@v4
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
@@ -44,9 +44,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: debricked/actions/cache@v3
-      - uses: debricked/actions/scan-non-docker@v3
+      - uses: actions/checkout@v4
+      - uses: debricked/actions/cache@v4
+      - uses: debricked/actions/scan-non-docker@v4
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
@@ -71,8 +71,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: debricked/actions/resolve@v3
+      - uses: actions/checkout@v4
+      - uses: debricked/actions/resolve@v4
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
@@ -89,9 +89,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: debricked/actions/cache@v3
-      - uses: debricked/actions/resolve-non-docker@v3
+      - uses: actions/checkout@v4
+      - uses: debricked/actions/cache@v4
+      - uses: debricked/actions/resolve-non-docker@v4
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
